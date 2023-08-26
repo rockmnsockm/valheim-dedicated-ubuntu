@@ -1,0 +1,15 @@
+[Unit]
+Description=Valheim service
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+User=steam
+WorkingDirectory=/home/steam/.steam/SteamApps/common/valheim/
+ExecStart=/bin/sh /home/steam/.steam/SteamApps/common/valheim/start_server.sh
+
+[Install]
+WantedBy=multi-user.target

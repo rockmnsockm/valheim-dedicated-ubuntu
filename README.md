@@ -21,6 +21,13 @@ Instructions for setting up the server on a GCP compute instance.
   - **Save the public and private key somewhere safe** **IMPORTANT**
 - Under `Security` > `Manage Access` > `Add Item` and paste the public key contents from PuTTY Key Generator
 - Create the instance
+- Add firewall rules for port forwarding
+  - Go to `VPC Network` > `Firewall` > `Firewall policies` > Click the three vertical dots on the top right
+  - Create a firewall rule:
+    -  Add `valnet` to `Target tags`
+    -  Set `Source IP4v ranges to `0.0.0.0/0`
+    -  Add ports `2456-2458` to TCP and UDP
+    -  Click `Create`
 
 ### Connect to the new instance
 - SSH into the instance using your favorite SSH client and the private key along with the username and password from earlier. You'll connect using the `External IP` listed in the `VM Instances` dashboard
@@ -52,3 +59,12 @@ sudo apt install lib32gcc-s1 steamcmd
   - Log in as the steam user: `sudo -u steam -s`
   - Change to the steam dir: `cd /home/steam`
   - `steamcmd +login anonymous +force_install_dir /home/steam/.steam/steamapps/common/valheim +app_update 896660 validate +exit`
+- Configure the Valheim server settings
+  - `cd /home/steam/.steam/SteamApps/common/valheim`
+  - Make a backup of the startup script: `cp start_server.sh start_server.sh.backup`
+  - Copy the `valheim.service` file to `/etc/systemd/system`
+  - Activate the service: `sudo systemctl enable valheim`
+  - Start the service: `sudo systemctl start valheim`
+ 
+> NOTE: To check the server status run `journalctl -u valheim -n 2000`
+> NOTE: To restart the server, run `sudo systemctl restart valheim`

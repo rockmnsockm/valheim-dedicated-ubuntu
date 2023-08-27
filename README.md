@@ -76,3 +76,16 @@ sudo apt install lib32gcc-s1 steamcmd
 > NOTE: To check the server status run `journalctl -u valheim -n 500`
 
 > NOTE: To restart the server, run `sudo systemctl restart valheim`
+
+### *Optional* Install Valheim Plus
+
+> NOTE: Check [the Valheim+ discord](https://discord.com/invite/ZUtqrcbJWa) for the latest news/releases. They are currently being maintained by [Grantapher](https://github.com/Grantapher/ValheimPlus/)
+
+- [Download the latest release from here](https://github.com/Grantapher/ValheimPlus/releases):
+  - For example: `sudo wget https://github.com/Grantapher/ValheimPlus/releases/download/0.9.9.17/UnixServer.zip`
+- Install unzip: `sudo apt install unzip`
+- Change directory: `cd /home/steam/.steam/SteamApps/common/valheim`
+- Extract the release: `sudo unzip UnixServer.zip`
+- Make the startup script executable: `sudo chmod u+x start_server_bepinex.sh`
+- Fix permissions: `sudo chown -R steam:steam ../valheim/`
+- Update `/etc/systemd/system/valheim.service` to use `start_server_bepinex.sh`

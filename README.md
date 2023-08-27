@@ -61,10 +61,16 @@ sudo apt install lib32gcc-s1 steamcmd
   - `steamcmd +login anonymous +force_install_dir /home/steam/.steam/steamapps/common/valheim +app_update 896660 validate +exit`
 - Configure the Valheim server settings
   - `cd /home/steam/.steam/SteamApps/common/valheim`
-  - Make a backup of the startup script: `cp start_server.sh start_server.sh.backup`
+  - Copy the `start_server.sh` file to `/home/steam/.steam/SteamApps/common/valheim`
   - Copy the `valheim.service` file to `/etc/systemd/system`
   - Activate the service: `sudo systemctl enable valheim`
   - Start the service: `sudo systemctl start valheim`
  
+### *Optional* Add UFW Firewall rules to the linux instance if unable to connect
+- Enable UFW: `sudo ufw enable`
+- IMPORTANT! **Add SSH forwarding**: `ufw allow 22/tcp`
+- Add port forwarding range for Valheim: `ufw allow 2456:2458/tcp`
+ 
 > NOTE: To check the server status run `journalctl -u valheim -n 2000`
+
 > NOTE: To restart the server, run `sudo systemctl restart valheim`

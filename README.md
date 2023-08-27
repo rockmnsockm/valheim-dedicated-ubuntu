@@ -63,6 +63,8 @@ sudo apt install lib32gcc-s1 steamcmd
   - `cd /home/steam/.steam/SteamApps/common/valheim`
   - Copy the `start_server.sh` file to `/home/steam/.steam/SteamApps/common/valheim`
   - Copy the `valheim.service` file to `/etc/systemd/system`
+- Final Touches
+  - Fix permissions: `chown -R steam:steam ./valheim/` 
   - Activate the service: `sudo systemctl enable valheim`
   - Start the service: `sudo systemctl start valheim`
  

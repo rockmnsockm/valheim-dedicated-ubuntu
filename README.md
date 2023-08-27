@@ -68,9 +68,9 @@ sudo apt install lib32gcc-s1 steamcmd
  
 ### *Optional* Add UFW Firewall rules to the linux instance if unable to connect
 - Enable UFW: `sudo ufw enable`
-- IMPORTANT! **Add SSH forwarding**: `ufw allow 22/tcp`
-- Add port forwarding range for Valheim: `ufw allow 2456:2458/tcp`
+- IMPORTANT! **Add SSH forwarding**: `sudo ufw allow 22/tcp`
+- Add port forwarding range for Valheim: `sudo ufw allow 2456:2458/tcp`
  
-> NOTE: To check the server status run `journalctl -u valheim -n 2000`
+> NOTE: To check the server status run `journalctl -u valheim -n 500`
 
 > NOTE: To restart the server, run `sudo systemctl restart valheim`
